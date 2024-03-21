@@ -5,7 +5,7 @@ namespace ConsoleApp2;
 
 public abstract class Kontener
 {
-    protected Kontener(int masaLadunku, int wysokosc, int wagaWlasna, int glebokosc, int maksymalnaLadownosc)
+    protected Kontener(double masaLadunku, double wysokosc, double wagaWlasna, double glebokosc, double maksymalnaLadownosc)
     {
         this.masaLadunku = masaLadunku;
         this.wysokosc = wysokosc;
@@ -16,26 +16,19 @@ public abstract class Kontener
         checkWeight();
     }
 
-    public int masaLadunku { get; set; }
-    public int wysokosc { get; set; }
-    public int wagaWlasna { get; set; }
-    public int glebokosc { get; set; }
+    public double masaLadunku { get; set; }
+    protected double wysokosc { get; set; }
+    protected double wagaWlasna { get; set; }
+    protected double glebokosc { get; set; }
     public NumerSeryjny numerSeryjny { get; set; }
-    public int maksymalnaLadownosc { get; set; }
+    protected double maksymalnaLadownosc { get; set; }
 
 
-    public virtual void Unload()
-    {
-        masaLadunku = 0;
-    }
+    public abstract void Unload();
 
-    public virtual void Load(int waga)
-    {
-        masaLadunku = waga;
-        checkWeight();
-    }
+    public abstract void Load(double waga, string produkt);
 
-    public void checkWeight()
+    public virtual void checkWeight()
     {
         if (masaLadunku > maksymalnaLadownosc)
         {
@@ -43,7 +36,10 @@ public abstract class Kontener
         }
     }
     
-    
+    public virtual string ToString()
+    {
+        return $"Kontener: Masa ładunku: {masaLadunku}, Wysokość: {wysokosc}, Waga własna: {wagaWlasna}, Głębokość: {glebokosc}, Numer seryjny: {numerSeryjny}, Maksymalna ładowność: {maksymalnaLadownosc}";
+    }
 
 
 }

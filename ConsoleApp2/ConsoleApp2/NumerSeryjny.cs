@@ -15,7 +15,7 @@ public class NumerSeryjny
         numer = number;
     }
 
-    public string getNumerSeryjny()
+    public override string ToString()
     {
         return first + "-" + second + "-" + numer;
     }
